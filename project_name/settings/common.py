@@ -132,6 +132,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
+    'account.context_processors.account',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
@@ -159,6 +160,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'account.middleware.LocaleMiddleware',
+    'account.middleware.TimezoneMiddleware',
 )
 ########## END MIDDLEWARE CONFIGURATION
 
@@ -197,11 +200,12 @@ THIRD_PARTY_APPS = (
     # Asynchronous task queue:
     'djcelery',
 
-    # User registration:
-    'registration',
+    # User accounts:
+    'account',
 )
 
 LOCAL_APPS = (
+    'users',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -277,10 +281,14 @@ COMPRESS_JS_FILTERS = [
 ########## END COMPRESSION CONFIGURATION
 
 
-########## REGISTRATION CONFIGURATION
-# See: https://django-registration.readthedocs.org/
+########## USER ACCOUNTS CONFIGURATION
+# See: http://django-user-accounts.readthedocs.org/en/latest/usage.html
 
-# One-week activation window
-ACCOUNT_ACTIVATION_DAYS = 7
+AUTHENTICATION_BACKENDS =  (
+    'django.contrib.auth.backends.ModelBackend',
+    'account.auth_backends.EmailAuthenticationBackend',
+)
+ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 
 ########## END REGISTRATION CONFIGURATION
