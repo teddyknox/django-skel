@@ -5,6 +5,12 @@ A modern Django (1.5) project skeleton.
 
 ![A fancy Django project skeleton](https://github.com/rdegges/django-skel/raw/master/docs/source/_static/skel.jpg)
 
+Changes in the fork
+===================
+
+* Added bootstrap and jquery
+* Added [django-user-accounts](http://django-user-accounts.readthedocs.org/en/latest/usage.html)
+* Added a single static page
 
 Meta
 ====
